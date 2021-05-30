@@ -34,7 +34,7 @@ namespace RicQRCoder
                 h.MaximumDisplayWidth = 200;
                 h.Heading = "RicQRCoder 1.0.0"; //change header
                 h.Copyright = "Copyright (c) 2021 cad.ru"; //change copyrigt text
-                h.AddPreOptionsLine("");
+                h.AddPreOptionsLine("");// ("<<license as is>>");
                 h.AddPostOptionsText("Good luck...");
                 return HelpText.DefaultParsingErrorsHandler(result, h);
             }, e => e);
