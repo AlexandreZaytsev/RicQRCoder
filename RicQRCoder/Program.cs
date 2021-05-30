@@ -38,7 +38,7 @@ namespace RicQRCoder
                 h.AddPostOptionsText("Good luck...");
                 return HelpText.DefaultParsingErrorsHandler(result, h);
             }, e => e);
-            Console.WriteLine(helpText);
+            Console.WriteLine(helpText); 
         }
               
 
