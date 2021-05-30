@@ -7,7 +7,7 @@
     <ProjectGuid>{D6E8B4FF-FF32-4F69-9C07-C1A15B5FDEA2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>RicQRCoder</RootNamespace>
-    <AssemblyName>RicQRCoder_CommandLine</AssemblyName>
+    <AssemblyName>RicQRCoder</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
