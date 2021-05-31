@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Markup;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RicQRCoder
 {
@@ -42,7 +41,7 @@ namespace RicQRCoder
         }
               
 
-        //3)	//In sucess: the main logic to handle the options
+        //In sucess: the main logic to handle the options
         static int RunOptionsAndReturnExitCode(Options opts)
         {
             Bitmap ImgBitmap = null;
