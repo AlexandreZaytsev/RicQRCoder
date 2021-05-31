@@ -20,8 +20,8 @@ namespace RicQRCoder
             var parser = new CommandLine.Parser(with => with.HelpWriter = null);
             var parserResult = parser.ParseArguments<Options>(args);
             parserResult
-             .WithParsed<Options>(options => RunOptionsAndReturnExitCode(options))
-             .WithNotParsed(errs => DisplayHelp(parserResult, errs));
+                .WithParsed<Options>(options => RunOptionsAndReturnExitCode(options))
+                .WithNotParsed(errs => DisplayHelp(parserResult, errs));
         }
 
         //in case of errors or --help or --version
@@ -53,13 +53,13 @@ namespace RicQRCoder
             //загрузка контента
             if (opts.Content != null)
             {
-                if (File.Exists(GetResorePath(opts.Content,"")))
+                if (File.Exists(opts.Content))                                          //если файл существует
                 {
-                    opts.Content = GetTextFromFile(new FileInfo(GetResorePath(opts.Content, "")));         //сначала из файла
+                    opts.Content = GetTextFromFile(new FileInfo(opts.Content));         //читаем из файла
                 }
                 else
                 {
-                    opts.Content = opts.Content;                                        //потом из строкового параметра                                         
+                    opts.Content = opts.Content;                                        //иначе читаем из строкового параметра                                         
                 }
             }
             else
@@ -68,9 +68,21 @@ namespace RicQRCoder
             }
 
             //файл QR
-            if (opts.OutputFileName != null)
+            //если имя не пустое и каталог и имя не содержат недопустимыз символов)
+            if (opts.OutputFileName != null)// && ((opts.OutputFileName.IndexOfAny(Path.GetInvalidPathChars()) == -1) && (opts.OutputFileName.IndexOfAny(Path.GetInvalidFileNameChars()) == -1)))
             {
-                opts.OutputFileName = GetResorePath(opts.OutputFileName, opts.ImageFormat.ToString().ToLower());
+                //удалить расширение если есть и добавить из параметров
+                if(Path.HasExtension(opts.OutputFileName))                          //если расширения есть - удалим его
+                {
+                    opts.OutputFileName = Path.GetDirectoryName(opts.OutputFileName)+ Path.GetFileNameWithoutExtension(opts.OutputFileName);
+                }
+                opts.OutputFileName += "."+opts.ImageFormat.ToString().ToLower();
+
+                //если каталог не существует
+                if ((!Directory.Exists(Path.GetDirectoryName(opts.OutputFileName))))
+                {
+                    opts.OutputFileName = appPath + Path.GetFileName(opts.OutputFileName);
+                }
             }
             else
             {
@@ -80,14 +92,13 @@ namespace RicQRCoder
             //файл иконки
             if (opts.ImgFileName != null)
             {
-                opts.ImgFileName = GetResorePath(opts.ImgFileName, ""); 
-                if (File.Exists(opts.ImgFileName))
-                {
+                if (File.Exists(opts.ImgFileName))                                      //если файл существует
+                { 
                     ImgBitmap = (Bitmap)Bitmap.FromFile(opts.ImgFileName);
                 }
                 else 
                 {
-                    Console.WriteLine($"{appPath}: {opts.ImgFileName}: No such file or directory");
+                    Console.WriteLine($"{appPath}: {opts.ImgFileName}: No such icon file or directory");
                 }
             }
 
@@ -95,7 +106,7 @@ namespace RicQRCoder
             if ((opts.PixelsPerModule < 1) || (opts.PixelsPerModule >100)) { opts.PixelsPerModule = 20; }
 
             GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, ImgBitmap, opts.ImgSize);
-
+//            Console.WriteLine($"{Path.GetFullPath(opts.OutputFileName)}: QR file created");
             return exitCode;
         }
 
@@ -179,22 +190,6 @@ namespace RicQRCoder
             }
 
             return Encoding.UTF8.GetString(buffer);
-        }
-
-        //восстановить имя файла из параметров
-        private static string GetResorePath(string filePath, string fileExt)
-        {
-            //добавим каталог приложения
-            if (filePath.IndexOfAny(Path.GetInvalidPathChars()) == -1)
-            {
-                filePath = AppDomain.CurrentDomain.BaseDirectory + filePath;
-            }
-            //добавим расширение если нужно
-            if ((Path.GetExtension(filePath) == "") && (fileExt !=""))
-            {
-                filePath = filePath + "." + fileExt;
-            }
-            return filePath;
         }
 
     }
