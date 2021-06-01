@@ -3,7 +3,7 @@
  - генератор картинки QR кода QRCoder 1.4.1 (https://github.com/codebude/QRCoder)
  - парсер командной строки CommandLineParser 2.8.0 (https://github.com/commandlineparser/commandline)
 
-_платформа Windows, проект собирал vs2019 под Fremework 4.0_  
+_платформа Windows, проект собирал vs2019 под  .NET Framework 4.0_  
 _Использование и параметры (RicQRCoder --help)_
 ***
 RicQRCoder 1.0.0
