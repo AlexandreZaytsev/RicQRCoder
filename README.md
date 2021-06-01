@@ -4,7 +4,7 @@
  - парсер командной строки CommandLineParser 2.8.0 (https://github.com/commandlineparser/commandline)
 
 _Windows/собирал под  .NET Framework 4.0_  
-_Использование и параметры (RicQRCoder --help)_
+_Использование и параметры (RicQRCoder.exe --help)_
 ***
 RicQRCoder 1.0.0  
 Copyright (c) 2021 cad.ru  
