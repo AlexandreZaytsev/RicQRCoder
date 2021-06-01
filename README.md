@@ -28,8 +28,8 @@ Good luck...
 ***
 использую для документов MSOffice выпускаемых из CRM - создать файл на диске - вставить в документ в рамку Shape найденную по имени  
 например:  
-
-    For each Shape in docWord.Shapes                                                                                               ' цикл по всем Shapes документа   
+```
+    For each Shape in docWord.Shapes ' цикл по всем Shapes документа   
       If ... Then    
         tmp = FSO.FindFile(vPathTemp & "\", Shape.Title, "png") 'попробовать найти файйл QR на диске
         if tmp<>"" then
@@ -40,3 +40,4 @@ Good luck...
      End if
      Shape.Line.Visible = False ' удалить рамку Shape в принципе (типа был обработан)
      Next
+```
