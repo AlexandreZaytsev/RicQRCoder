@@ -3,13 +3,13 @@
  - генератор картинки QR кода QRCoder 1.4.1 (https://github.com/codebude/QRCoder)
  - парсер командной строки CommandLineParser 2.8.0 (https://github.com/commandlineparser/commandline)
 
-_платформа Windows, проект собирал vs2019 под  .NET Framework 4.0_  
+_Windows/собирал под  .NET Framework 4.0_  
 _Использование и параметры (RicQRCoder --help)_
 ***
-RicQRCoder 1.0.0
-Copyright (c) 2021 cad.ru
-USAGE:
-Creates a QR image file from your content (string or file):
+RicQRCoder 1.0.0  
+Copyright (c) 2021 cad.ru  
+USAGE:  
+Creates a QR image file from your content (string or file):  
   RicQRCoder.exe --content "your content" --outFile "your FileName QRImageFile"
 
 -  -i, --content     Required. String or full File name with your content.
@@ -26,7 +26,7 @@ Creates a QR image file from your content (string or file):
 
 Good luck...
 ***
-использую для документов MSOffice выпускаемых из рабочей CRM - создать файл на диске - вставить в документ в рамку Shape найденную по имени  
+использую для документов MSOffice выпускаемых из CRM - создать файл на диске - вставить в документ в рамку Shape найденную по имени  
 например:  
 
     For each Shape in docWord.Shapes                                                                                               ' цикл по всем Shapes документа   
