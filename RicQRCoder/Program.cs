@@ -179,6 +179,7 @@ namespace RicQRCoder
             }
         }
 
+        //прочитать контент из файла
         private static string GetTextFromFile(FileInfo fileInfo)
         {
             var buffer = new byte[fileInfo.Length];

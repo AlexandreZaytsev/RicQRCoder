@@ -44,7 +44,7 @@ namespace RicQRCoder
             get
             {
                 return new List<Example>() {
-                    new Example("Creates a QR image file from your content (string or file)" ,new Options { Content="your content", OutputFileName = "your FileName QRImageFile"})
+                    new Example("Creates a QR image file (fixed pixel size) from your content (string or file)" ,new Options { Content="your content", OutputFileName = "your FileName QRImageFile"})
                 };
             }
         }    
