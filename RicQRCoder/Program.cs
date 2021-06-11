@@ -31,9 +31,9 @@ namespace RicQRCoder
                 h.AdditionalNewLineAfterOption = false; //remove the extra newline between options
                 h.AddEnumValuesToHelpText = true;
                 h.MaximumDisplayWidth = 200;
-                h.Heading = "RicQRCoder 1.0.0"; //change header
+                h.Heading = "RicQRCoder 1.0.0 (uses two libraries (in the program directory): QRCoder.dll, CommandLine.dll)"; //change header
                 h.Copyright = "Copyright (c) 2021 cad.ru"; //change copyrigt text
-                h.AddPreOptionsLine("using two libraries (in the program directory): QRCoder.dll, CommandLine.dll");// ("<<license as is>>");
+                h.AddPreOptionsLine("");// ("<<license as is>>");
                 h.AddPostOptionsText("Good luck...");
                 return HelpText.DefaultParsingErrorsHandler(result, h);
             }, e => e);
