@@ -32,11 +32,11 @@ namespace RicQRCoder
         [Option(longName: "foreground", Required = false, HelpText = "Foreground color.", Default = "#FFFFFF")]
         public string BackgroundColor { get; set; }
 
-        [Option(shortName: 'l', longName: "iconPath", Required = false, HelpText = "Bitmap image from file (full file name with extension).", Default = null)]
-        public string ImgFileName { get; set; }
+        [Option(shortName: 'l', longName: "logoPath", Required = false, HelpText = "Bitmap image logo from file (full file name with extension).", Default = null)]
+        public string logoFileName { get; set; }
 
-        [Option(longName: "iconSize", Required = false, HelpText = "Sets how much 1-99% of the QR Code will be covered by the icon.", Default = 15)]
-        public int ImgSize { get; set; } 
+        [Option(longName: "logoSize", Required = false, HelpText = "Sets how much 1-99% of the QR Code will be covered by the icon.", Default = 15)]
+        public int logoSize { get; set; } 
 
         [Usage(ApplicationAlias = "RicQRCoder.exe")]
         public static IEnumerable<Example> Examples

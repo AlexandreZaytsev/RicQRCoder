@@ -89,22 +89,22 @@ namespace RicQRCoder
             }
 
             //файл иконки
-            if (opts.ImgFileName != null)
+            if (opts.logoFileName != null)
             {
-                if (File.Exists(opts.ImgFileName))                                      //если файл существует
+                if (File.Exists(opts.logoFileName))                                      //если файл существует
                 { 
-                    ImgBitmap = (Bitmap)Bitmap.FromFile(opts.ImgFileName);
+                    ImgBitmap = (Bitmap)Bitmap.FromFile(opts.logoFileName);
                 }
                 else 
                 {
-                    Console.WriteLine($"{appPath}: {opts.ImgFileName}: No such icon file or directory");
+                    Console.WriteLine($"{appPath}: {opts.logoFileName}: No such image logo file or directory");
                 }
             }
 
             //проверка количества пикселей
             if ((opts.PixelsPerModule < 1) || (opts.PixelsPerModule >100)) { opts.PixelsPerModule = 20; }
 
-            GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, ImgBitmap, opts.ImgSize);
+            GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, ImgBitmap, opts.logoSize);
 //            Console.WriteLine($"{Path.GetFullPath(opts.OutputFileName)}: QR file created");
             return exitCode;
         }
