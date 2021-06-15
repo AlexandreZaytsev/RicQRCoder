@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
 [assembly: AssemblyTitle("RicQRCoder")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Генератор QR кодов для внутренних документов на оплату (Счета/Договора)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Русская Промышленная Компания")]
 [assembly: AssemblyProduct("RicQRCoder")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("RIC Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
