@@ -13,7 +13,7 @@ namespace RicQRCoder
 {
     
     class MainClass
-    {
+    { 
         public static void Main(string[] args)
         {
             var parser = new CommandLine.Parser(with => with.HelpWriter = null);
