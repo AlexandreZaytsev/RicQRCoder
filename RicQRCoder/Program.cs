@@ -44,7 +44,8 @@ namespace RicQRCoder
         //In sucess: the main logic to handle the options
         static int RunOptionsAndReturnExitCode(Options opts)
         {
-            Bitmap ImgBitmap = null;
+            Bitmap LogoBitmap = null;
+            Bitmap ArtBitmap = null;
             var exitCode = 0;
             string appPath = AppDomain.CurrentDomain.BaseDirectory; //string yourpath = Environment.CurrentDirectory (нет закрывающего слеша)
 //            Console.WriteLine("props= {0}", string.Join(",", props));
@@ -88,12 +89,12 @@ namespace RicQRCoder
                 opts.OutputFileName = appPath + "QRImageFile." + opts.ImageFormat.ToString().ToLower();
             }
 
-            //файл иконки
+            //файл логотипа (иконки)
             if (opts.LogoFileName != null)
             {
                 if (File.Exists(opts.LogoFileName))                                      //если файл существует
                 { 
-                    ImgBitmap = (Bitmap)Bitmap.FromFile(opts.LogoFileName);
+                    LogoBitmap = (Bitmap)Bitmap.FromFile(opts.LogoFileName);
                 }
                 else 
                 {
@@ -101,15 +102,28 @@ namespace RicQRCoder
                 }
             }
 
+            //файл фона (background)
+            if (opts.ArtFileName != null)
+            {
+                if (File.Exists(opts.ArtFileName))                                      //если файл существует
+                {
+                    ArtBitmap = (Bitmap)Bitmap.FromFile(opts.ArtFileName);
+                }
+                else
+                {
+                    Console.WriteLine($"{appPath}: {opts.ArtFileName}: No such art image file or directory");
+                }
+            }
+
             //проверка количества пикселей
             if ((opts.PixelsPerModule < 1) || (opts.PixelsPerModule >100)) { opts.PixelsPerModule = 20; }
 
-            GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, ImgBitmap, opts.LogoSize);
+            GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, LogoBitmap, opts.LogoSize, ArtBitmap);
 //            Console.WriteLine($"{Path.GetFullPath(opts.OutputFileName)}: QR file created");
             return exitCode;
         }
 
-        private static void GenerateQRCode(string payloadString, QRCodeGenerator.ECCLevel eccLevel, string outputFileName, SupportedImageFormat imgFormat, int pixelsPerModule, string foreground, string background, Bitmap imgObj, int imgSize)
+        private static void GenerateQRCode(string payloadString, QRCodeGenerator.ECCLevel eccLevel, string outputFileName, SupportedImageFormat imgFormat, int pixelsPerModule, string foreground, string background, Bitmap LogoBitmap, int imgSize, Bitmap ArtBitmap)
         {
             //            using (var generator = new QRCodeGenerator())
             using (QRCoder.QRCodeGenerator generator = new QRCodeGenerator())
@@ -124,13 +138,28 @@ namespace RicQRCoder
                         case SupportedImageFormat.Gif:
                         case SupportedImageFormat.Bmp:
                         case SupportedImageFormat.Tiff:
-                         //   using (var code = new QRCode(data))
-                            using (QRCoder.QRCode code = new QRCode(data))
+                            //   using (var code = new QRCode(data))
+
+                            if (ArtBitmap != null)
                             {
-                                using (var bitmap = code.GetGraphic(pixelsPerModule, ColorTranslator.FromHtml(foreground), ColorTranslator.FromHtml(background), imgObj, imgSize))
+                                using (QRCoder.ArtQRCode code = new ArtQRCode(data)) 
                                 {
-                                    var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
-                                    bitmap.Save(outputFileName, actualFormat);
+                                    using (var bitmap = code.GetGraphic(ArtBitmap))
+                                    {
+                                        var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
+                                        bitmap.Save(outputFileName, actualFormat);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                using (QRCoder.QRCode code = new QRCode(data))
+                                {
+                                    using (var bitmap = code.GetGraphic(pixelsPerModule, ColorTranslator.FromHtml(foreground), ColorTranslator.FromHtml(background), LogoBitmap, imgSize))
+                                    {
+                                        var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
+                                        bitmap.Save(outputFileName, actualFormat);
+                                    }
                                 }
                             }
                             break;

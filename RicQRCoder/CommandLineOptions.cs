@@ -36,7 +36,10 @@ namespace RicQRCoder
         public string LogoFileName { get; set; }
 
         [Option(longName: "logoSize", Required = false, HelpText = "Sets how much 1-99% of the QR Code will be covered by the icon.", Default = 15)]
-        public int LogoSize { get; set; } 
+        public int LogoSize { get; set; }
+
+        [Option(shortName: 'a', longName: "artPath", Required = false, HelpText = "Bitmap art image (background) from file (full file name with extension).", Default = null)]
+        public string ArtFileName { get; set; }
 
         [Usage(ApplicationAlias = "RicQRCoder.exe")]
         public static IEnumerable<Example> Examples
