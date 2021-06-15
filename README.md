@@ -14,13 +14,13 @@ Creates a QR image file from your content (string or file):
 
 -  -i, --content     Required. String or full File name with your content.
 -  -o, --outFile     Required. Output file. Full file name without extension (extension from outFormat parameter).
--  --outFormat       (Default: Png) Image format for outputfile. Valid values: Png, Jpg, Gif, Bmp, Tiff, Svg, Xaml, Ps, Eps
+-  --outFormat       (Default: Png) Image format for outputfile. Valid values: Png, Jpg, Gif, Bmp, Tiff, Svg, Xaml, Ps, Eps)
 -  --eccLevel        (Default: M) Error correction level: L-7%, M-15%, Q-25%, H-30%. Valid values: L, M, Q, H
 -  --pixelSize       (Default: 20) The pixel size each b/w module is drawn (from 1 and more).
 -  --background      (Default: #000000) Background color.
 -  --foreground      (Default: #FFFFFF) Foreground color.
--  -l, --iconPath    Bitmap image from file (full file name with extension).
--  --iconSize        (Default: 15) Sets how much 1-99% of the QR Code will be covered by the icon.
+-  -l, --logoPath    Bitmap image logo from file (full file name with extension).
+-  --logoSize        (Default: 15) Sets how much 1-99% of the QR Code will be covered by the icon.
 -  --help            Display this help screen.
 -  --version         Display version information.
 
