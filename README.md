@@ -1,6 +1,6 @@
 # RicQRCoder
 Консольное приложение - создание файла с картинкой QR кода использует библиотеки:
- - генератор картинки QR кода QRCoder 1.4.1 (https://github.com/codebude/QRCoder)
+ - генератор картинки QR кода QRCoder 1.4.x (https://github.com/codebude/QRCoder)
  - парсер командной строки CommandLineParser 2.8.0 (https://github.com/commandlineparser/commandline)
 
 _Windows/собирал под  .NET Framework 4.0_  
