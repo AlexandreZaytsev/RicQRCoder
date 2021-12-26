@@ -122,12 +122,12 @@ namespace RicQRCoder
             //проверка количества пикселей
             if ((opts.PixelsPerModule < 1) || (opts.PixelsPerModule >100)) { opts.PixelsPerModule = 20; }
 
-            GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, LogoBitmap, opts.LogoSize, ArtBitmap);
+            GenerateQRCode(opts.Content, opts.EccLevel, opts.OutputFileName, opts.ImageFormat, opts.PixelsPerModule, opts.ForegroundColor, opts.BackgroundColor, opts.Mode, LogoBitmap, opts.LogoSize, ArtBitmap);
 //            Console.WriteLine($"{Path.GetFullPath(opts.OutputFileName)}: QR file created");
             return exitCode;
         }
 
-        private static void GenerateQRCode(string payloadString, QRCodeGenerator.ECCLevel eccLevel, string outputFileName, SupportedImageFormat imgFormat, int pixelsPerModule, string foreground, string background, Bitmap LogoBitmap, int imgSize, Bitmap ArtBitmap)
+        private static void GenerateQRCode(string payloadString, QRCodeGenerator.ECCLevel eccLevel, string outputFileName, SupportedImageFormat imgFormat, int pixelsPerModule, string foreground, string background, int Mode, Bitmap LogoBitmap, int imgSize, Bitmap ArtBitmap)
         {
             //            using (var generator = new QRCodeGenerator())
             using (QRCoder.QRCodeGenerator generator = new QRCodeGenerator())
@@ -142,29 +142,28 @@ namespace RicQRCoder
                         case SupportedImageFormat.Gif:
                         case SupportedImageFormat.Bmp:
                         case SupportedImageFormat.Tiff:
-                            //   using (var code = new QRCode(data))
-
-                            if (ArtBitmap != null)
+                            switch (Mode)
                             {
-                                using (QRCoder.ArtQRCode code = new ArtQRCode(data)) 
-                                {
-                                    using (var bitmap = code.GetGraphic(ArtBitmap))
+                                case 1:
+                                    using (QRCoder.ArtQRCode code = new ArtQRCode(data))
                                     {
-                                        var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
-                                        bitmap.Save(outputFileName, actualFormat);
+                                        using (var bitmap = code.GetGraphic(ArtBitmap))
+                                        {
+                                            var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
+                                            bitmap.Save(outputFileName, actualFormat);
+                                        }
                                     }
-                                }
-                            }
-                            else
-                            {
-                                using (QRCoder.QRCode code = new QRCode(data))
-                                {
-                                    using (var bitmap = code.GetGraphic(pixelsPerModule, ColorTranslator.FromHtml(foreground), ColorTranslator.FromHtml(background), LogoBitmap, imgSize))
+                                    break;
+                                default:
+                                    using (QRCoder.QRCode code = new QRCode(data))
                                     {
-                                        var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
-                                        bitmap.Save(outputFileName, actualFormat);
+                                        using (var bitmap = code.GetGraphic(pixelsPerModule, ColorTranslator.FromHtml(foreground), ColorTranslator.FromHtml(background), LogoBitmap, imgSize))
+                                        {
+                                            var actualFormat = new OptionSetter().GetImageFormat(imgFormat.ToString());
+                                            bitmap.Save(outputFileName, actualFormat);
+                                        }
                                     }
-                                }
+                                    break;
                             }
                             break;
                         case SupportedImageFormat.Svg:

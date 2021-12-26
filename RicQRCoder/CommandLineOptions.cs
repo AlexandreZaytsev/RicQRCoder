@@ -32,6 +32,9 @@ namespace RicQRCoder
         [Option(longName: "foreground", Required = false, HelpText = "Foreground color.", Default = "#FFFFFF")]
         public string BackgroundColor { get; set; }
 
+        [Option(shortName: 'm', longName: "mode", Required = false, HelpText = "Satndard (0) or Art mode(1).", Default = 0)]
+        public int Mode { get; set; }
+
         [Option(shortName: 'l', longName: "logoPath", Required = false, HelpText = "Bitmap image logo from file (full file name with extension).", Default = null)]
         public string LogoFileName { get; set; }
 
