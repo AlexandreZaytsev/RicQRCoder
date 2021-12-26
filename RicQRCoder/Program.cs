@@ -9,6 +9,10 @@ using System.Text;
 using System.Windows.Markup;
 using System.Collections.Generic;
 
+
+//using NDesk.Options;
+
+
 namespace RicQRCoder
 {
     
@@ -175,6 +179,7 @@ namespace RicQRCoder
                             }
                             break;
 #if !NET5_0 && !NET5_0_WINDOWS
+                            /*
                         case SupportedImageFormat.Xaml:
                             using (var code = new XamlQRCode(data))
                             {
@@ -186,6 +191,7 @@ namespace RicQRCoder
                                 }
                             }
                             break;
+                            */
 #endif
                         case SupportedImageFormat.Ps:
                         case SupportedImageFormat.Eps:
