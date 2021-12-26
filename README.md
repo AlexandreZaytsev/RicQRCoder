@@ -6,7 +6,7 @@
 _Windows/собирал под  .NET Framework 4.0_  
 _Использование и параметры (RicQRCoder.exe --help)_
 ***
-RicQRCoder 1.0.0  
+RicQRCoder 1.0.2  
 Copyright (c) 2021 cad.ru  
 USAGE:  
 Creates a QR image file from your content (string or file):  
