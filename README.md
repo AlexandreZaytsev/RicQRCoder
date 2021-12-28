@@ -19,6 +19,7 @@ Creates a QR image file from your content (string or file):
 -  --pixelSize       (Default: 20) The pixel size each b/w module is drawn (from 1 and more).
 -  --background      (Default: #000000) Background color.
 -  --foreground      (Default: #FFFFFF) Foreground color.
+-  -m, --mode        (Default: 0) Satndard (0) or Art mode(1).
 -  -l, --logoPath    Bitmap image logo from file (full file name with extension).
 -  --logoSize        (Default: 15) Sets how much 1-99% of the QR Code will be covered by the icon.
 -  --help            Display this help screen.
