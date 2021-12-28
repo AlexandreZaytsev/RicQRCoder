@@ -27,7 +27,7 @@ namespace RicQRCoder
                 .WithNotParsed(errs => DisplayHelp(parserResult, errs));
         }
 
-        //in case of errors or --help or --version
+        //in case of errors or --help or --version  
         static void DisplayHelp<T>(ParserResult<T> result, IEnumerable<Error> errs)
         {
             var helpText = HelpText.AutoBuild(result, h =>
